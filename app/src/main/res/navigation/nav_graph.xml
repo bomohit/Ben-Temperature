@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/HomeFragment">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.bit.temperatureapps.HomeFragment"
+        android:label="@string/home_fragment_label"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_ScanFragment"
+            app:destination="@id/ScanFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_heartFragment"
+            app:destination="@id/HeartFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_HistoryFragment"
+            app:destination="@id/HistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ScanFragment"
+        android:name="com.bit.temperatureapps.ScanFragment"
+        android:label="@string/scan_fragment_label"
+        tools:layout="@layout/fragment_scan">
+
+        <action
+            android:id="@+id/action_ScanFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HeartFragment"
+        android:name="com.bit.temperatureapps.HeartFragment"
+        android:label="fragment_heart"
+        tools:layout="@layout/fragment_heart" />
+    <fragment
+        android:id="@+id/HistoryFragment"
+        android:name="com.bit.temperatureapps.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+</navigation>
