@@ -15,9 +15,6 @@
             android:id="@+id/action_HomeFragment_to_ScanFragment"
             app:destination="@id/ScanFragment" />
         <action
-            android:id="@+id/action_HomeFragment_to_heartFragment"
-            app:destination="@id/HeartFragment" />
-        <action
             android:id="@+id/action_HomeFragment_to_HistoryFragment"
             app:destination="@id/HistoryFragment" />
     </fragment>
@@ -30,6 +27,9 @@
         <action
             android:id="@+id/action_ScanFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_ScanFragment_to_HeartFragment"
+            app:destination="@id/HeartFragment" />
     </fragment>
     <fragment
         android:id="@+id/HeartFragment"

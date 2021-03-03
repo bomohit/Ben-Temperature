@@ -30,8 +30,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_HomeFragment_to_ScanFragment)
         }
 
-        view.findViewById<ConstraintLayout>(R.id.heartButton).setOnClickListener {
-            findNavController().navigate(R.id.action_HomeFragment_to_heartFragment)
+        view.findViewById<ConstraintLayout>(R.id.settingButton).setOnClickListener {
+
         }
 
         view.findViewById<ConstraintLayout>(R.id.historyButton).setOnClickListener {

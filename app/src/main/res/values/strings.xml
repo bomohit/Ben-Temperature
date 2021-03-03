@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TemperatureApps</string>
+    <string name="app_name">Good Doctor</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="home_fragment_label">Home Fragment</string>

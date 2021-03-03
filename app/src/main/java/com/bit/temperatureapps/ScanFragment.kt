@@ -27,5 +27,10 @@ class ScanFragment : Fragment() {
 //        view.findViewById<Button>(R.id.button_second).setOnClickListener {
 //            findNavController().navigate(R.id.action_ScanFragment_to_HomeFragment)
 //        }
+
+        view.findViewById<Button>(R.id.buttonNext).setOnClickListener {
+            findNavController().navigate(R.id.action_ScanFragment_to_HeartFragment)
+        }
     }
+
 }
