@@ -35,7 +35,11 @@
         android:id="@+id/HeartFragment"
         android:name="com.bit.temperatureapps.HeartFragment"
         android:label="fragment_heart"
-        tools:layout="@layout/fragment_heart" />
+        tools:layout="@layout/fragment_heart" >
+        <argument
+            android:name="temperature"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/HistoryFragment"
         android:name="com.bit.temperatureapps.HistoryFragment"

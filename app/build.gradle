@@ -59,4 +59,15 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
+
+    // Usn Serial Component
+    implementation 'com.github.mik3y:usb-serial-for-android:3.3.0'
+
+    // Heart Rate Ometer Component
+    implementation 'com.github.kibotu:Heart-Rate-Ometer:-SNAPSHOT'
+
+    // IO Component
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
 }
