@@ -2,6 +2,7 @@ package com.bit.temperatureapps
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -10,7 +11,6 @@ import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -51,7 +51,7 @@ class HeartFragment : Fragment() {
         heartButton.setOnClickListener {
             heartButton.setImageResource(R.drawable.temp_red_bg)
             if (!req) {
-                var fingerRead: String? = null
+                var heartBeat: String? = null
                 req = true
                 var fingerOn = false
                 val bpmUpdates = HeartRateOmeter()
@@ -66,7 +66,7 @@ class HeartFragment : Fragment() {
                         if (bpm!!.value > 0) {
                             d("bomoh", "bpm1: true")
                             view.findViewById<TextView>(R.id.bpmRate).text = bpm!!.value.toString()
-                            fingerRead = bpm!!.value.toString()
+                            heartBeat = bpm!!.value.toString()
                             fingerOn = true
                         } else {
                             fingerOn = false
@@ -92,8 +92,20 @@ class HeartFragment : Fragment() {
                         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                         val formatted = current.format(formatter)
                         val temperature = arguments?.getString("temperature").toString()
-                        val user = User(0, formatted, temperature, fingerRead.toString())
+                        val user = User(0, formatted, temperature, heartBeat.toString())
 //                        mUserViewModel.addUser(user)
+
+                        val temp = temperature.toInt()
+                        val beat = heartBeat?.toInt()
+                        // check if unhealthy or healthy
+
+                        val intent = Intent(requireContext(), HealthStatusActivity::class.java)
+                        intent.putExtra("bpm", heartBeat.toString())
+                        intent.putExtra("temperature", temperature)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+
                     }
 
                 },10000 )

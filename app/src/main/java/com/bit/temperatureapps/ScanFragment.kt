@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context.USB_SERVICE
 import android.content.Intent
 import android.hardware.usb.UsbManager
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log.d
 import android.view.LayoutInflater
@@ -127,24 +128,24 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
             Executors.newSingleThreadExecutor().shutdown()
         }
 
-
-
-
     }
 
     @SuppressLint("SetTextI18n")
     override fun onNewData(data: ByteArray?) {
 //        Toast.makeText(v!!, "${String(data!!)}", Toast.LENGTH_SHORT).show()
 //        this.requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!)} °C"
-
-        requireActivity().runOnUiThread { requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!)} °C" }
+        val mp = MediaPlayer.create(requireContext(), R.raw.scan);
         d("bomoh", "yes ${String(data!!)}")
-        if (!String(data).isNullOrEmpty() && String(data) != "error") {
+        if (!String(data).contains("error")) {
+            temperatureTaken = String(data)
+            mp.start()
+            requireActivity().runOnUiThread {
+                requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!)} °C"
+
+            }
             requireActivity().runOnUiThread {
                 requireActivity().findViewById<Button>(R.id.buttonNext).isEnabled = true
             }
-        } else {
-            requireActivity().findViewById<Button>(R.id.buttonNext).isEnabled = false
         }
     }
 
