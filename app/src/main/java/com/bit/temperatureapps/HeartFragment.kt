@@ -29,6 +29,7 @@ class HeartFragment : Fragment() {
     private lateinit var mUserViewModel: UserViewModel
     var subscription: CompositeDisposable? = null
     var req = false
+    var temperature: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,7 +40,11 @@ class HeartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_heart, container, false)
+        val root = inflater.inflate(R.layout.fragment_heart, container, false)
+
+
+        return root
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -91,13 +96,10 @@ class HeartFragment : Fragment() {
                         val current = LocalDateTime.now()
                         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
                         val formatted = current.format(formatter)
-                        val temperature = arguments?.getString("temperature").toString()
-                        val user = User(0, formatted, temperature, heartBeat.toString())
-//                        mUserViewModel.addUser(user)
 
-                        val temp = temperature.toInt()
-                        val beat = heartBeat?.toInt()
-                        // check if unhealthy or healthy
+                        temperature = arguments?.getString("temperature").toString()
+                        val user = User(0, formatted, temperature.toString(), heartBeat.toString())
+//                        mUserViewModel.addUser(user)
 
                         val intent = Intent(requireContext(), HealthStatusActivity::class.java)
                         intent.putExtra("bpm", heartBeat.toString())
@@ -105,9 +107,8 @@ class HeartFragment : Fragment() {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or
                                 Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
-
+                        requireActivity().finish()
                     }
-
                 },10000 )
             }
 
