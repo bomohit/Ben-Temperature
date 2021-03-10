@@ -24,6 +24,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:hint="Heart Rate :"
+        android:textColor="#737171"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -34,7 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="100 Bpm"
+        android:textColor="#737171"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -45,6 +48,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:hint="Body Temperature :"
+        android:textColor="#737171"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/stat_temperature"
         app:layout_constraintHorizontal_bias="0.5"
@@ -58,7 +62,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:hint="36.2 °C"
+        android:textColor="#737171"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -70,6 +76,7 @@
         android:maxWidth="128dp"
         android:paddingTop="10dp"
         android:text="Overall Health Condition"
+        android:textColor="#737171"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/anchor"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,8 +85,10 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/border"
+        android:backgroundTint="#BBE2F4"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +99,7 @@
             android:id="@+id/stat_condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Condition"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -99,14 +109,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1. status one"
-            android:textSize="20sp" />
+            android:textColor="#737171"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/stat_condition2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="2. status two"
-            android:textSize="20sp" />
+            android:textColor="#737171"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <TextView

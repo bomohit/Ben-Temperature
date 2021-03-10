@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bit.temperatureapps.data.User
 import com.bit.temperatureapps.data.UserViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -42,6 +43,7 @@ class HeartFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_heart, container, false)
 
+        mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         return root
 
@@ -98,8 +100,8 @@ class HeartFragment : Fragment() {
                         val formatted = current.format(formatter)
 
                         temperature = arguments?.getString("temperature").toString()
-                        val user = User(0, formatted, temperature.toString(), heartBeat.toString())
-//                        mUserViewModel.addUser(user)
+                        val user = User(0, formatted, temperature!!, heartBeat.toString())
+                        mUserViewModel.addUser(user)
 
                         val intent = Intent(requireContext(), HealthStatusActivity::class.java)
                         intent.putExtra("bpm", heartBeat.toString())

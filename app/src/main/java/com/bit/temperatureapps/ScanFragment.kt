@@ -51,6 +51,7 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
 //        }
 
         view.findViewById<Button>(R.id.buttonNext).setOnClickListener {
+//            val bundle = bundleOf("temperature" to "36.7")
             val bundle = bundleOf("temperature" to temperatureTaken.toString())
             findNavController().navigate(R.id.action_ScanFragment_to_HeartFragment, bundle)
         }
