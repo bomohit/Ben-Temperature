@@ -1,12 +1,13 @@
 package com.bit.temperatureapps
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isGone
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bit.temperatureapps.data.User
@@ -21,6 +22,7 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
         val row_temperature: TextView = itemView.findViewById(R.id.row_temperature)
         val row_bpm: TextView = itemView.findViewById(R.id.row_bpm)
         val row_date: TextView = itemView.findViewById(R.id.row_date)
+        val lay: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
 
     }
 
@@ -56,6 +58,14 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
         holder.row_time.text = time
         holder.row_temperature.text = currentItem.temperature.toDouble().toString() + "°C"
         holder.row_bpm.text = currentItem.bpm + " Bpm"
+
+        holder.lay.setOnClickListener {
+            val intent = Intent(it.context, HealthStatusActivity::class.java)
+            intent.putExtra("bpm", currentItem.bpm)
+            intent.putExtra("temperature", currentItem.temperature)
+            intent.putExtra("from", "history")
+            it.context.startActivity(intent)
+        }
 
     }
 

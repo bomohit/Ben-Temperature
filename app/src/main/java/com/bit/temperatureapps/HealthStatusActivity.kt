@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log.d
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.IllegalArgumentException
 
 class HealthStatusActivity: AppCompatActivity() {
+    var from : String? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +19,11 @@ class HealthStatusActivity: AppCompatActivity() {
 
         val bpm = intent.getStringExtra("bpm").toString().toInt()
         val temperature = intent.getStringExtra("temperature").toString().toDouble()
+        try {
+            from = intent.getStringExtra("from").toString()
+        } catch (e: IllegalArgumentException) {
+            d("bomoh", "not from history")
+        }
 
         findViewById<TextView>(R.id.stat_temperature).text = "$temperature °C"
         findViewById<TextView>(R.id.stat_bpm).text = "$bpm Bpm"
@@ -60,8 +68,11 @@ class HealthStatusActivity: AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+        if (from.isNullOrEmpty()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 }
