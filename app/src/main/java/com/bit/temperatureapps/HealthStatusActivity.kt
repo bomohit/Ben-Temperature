@@ -19,6 +19,7 @@ class HealthStatusActivity: AppCompatActivity() {
 
         val bpm = intent.getStringExtra("bpm").toString().toInt()
         val temperature = intent.getStringExtra("temperature").toString().toDouble()
+
         try {
             from = intent.getStringExtra("from").toString()
         } catch (e: IllegalArgumentException) {

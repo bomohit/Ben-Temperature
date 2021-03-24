@@ -7,6 +7,7 @@ import android.content.Intent
 import android.hardware.usb.UsbManager
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ import java.util.concurrent.Executors
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+@Suppress("DEPRECATION")
 class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
     private var baudRate = 9600
     var temperatureTaken : String? = null
@@ -40,6 +42,10 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
         // Inflate the layout for this fragment
 
         val root = inflater.inflate(R.layout.fragment_scan, container, false)
+        getDataFromArduino()
+        Handler().postDelayed({
+            getDataFromArduino()
+        }, 3000)
 
         return root
     }
@@ -60,9 +66,8 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
             getDataFromArduino()
         }
 
-
-
     }
+
 
     fun getDataFromArduino() {
         // Find all available drivers from attached devices.
@@ -136,12 +141,12 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
 //        Toast.makeText(v!!, "${String(data!!)}", Toast.LENGTH_SHORT).show()
 //        this.requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!)} °C"
         val mp = MediaPlayer.create(requireContext(), R.raw.scan);
-        d("bomoh", "yes ${String(data!!)}")
-        if (!String(data).contains("error")) {
+        d("bomoh", "yes ${String(data!!)}nn")
+        if (!String(data).contains("error") && String(data).contains(".")) {
             temperatureTaken = String(data)
             mp.start()
             requireActivity().runOnUiThread {
-                requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!)} °C"
+                requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!).trimIndent()} °C"
 
             }
             requireActivity().runOnUiThread {
