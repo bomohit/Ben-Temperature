@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         }
 
         view.findViewById<ConstraintLayout>(R.id.settingButton).setOnClickListener {
-
+            findNavController().navigate(R.id.action_HomeFragment_to_settingsFragment2)
         }
 
         view.findViewById<ConstraintLayout>(R.id.historyButton).setOnClickListener {

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_HistoryFragment"
             app:destination="@id/HistoryFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_settingsFragment2"
+            app:destination="@id/settingsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/ScanFragment"
@@ -45,4 +48,9 @@
         android:name="com.bit.temperatureapps.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.bit.temperatureapps.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
