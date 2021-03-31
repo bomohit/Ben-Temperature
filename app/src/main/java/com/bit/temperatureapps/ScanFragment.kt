@@ -34,6 +34,7 @@ import java.util.concurrent.Executors
 class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
     private var baudRate = 9600
     var temperatureTaken : String? = null
+    var stat :Boolean = false
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -142,7 +143,7 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
 //        this.requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!)} °C"
         val mp = MediaPlayer.create(requireContext(), R.raw.scan);
         d("bomoh", "yes ${String(data!!)}nn")
-        if (!String(data).contains("error") && String(data).contains(".")) {
+        if (!String(data).contains("error") && String(data).contains(".") && !stat) {
             temperatureTaken = String(data)
             mp.start()
             requireActivity().runOnUiThread {
@@ -152,6 +153,11 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
             requireActivity().runOnUiThread {
                 requireActivity().findViewById<Button>(R.id.buttonNext).isEnabled = true
             }
+            stat = true
+        }
+        if (String(data).contains("error")) {
+            // reset
+            stat = false
         }
     }
 

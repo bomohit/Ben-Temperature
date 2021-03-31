@@ -22,8 +22,9 @@ class HealthStatusActivity: AppCompatActivity() {
 
         try {
             from = intent.getStringExtra("from").toString()
+            d("bomoh", "from history $from")
         } catch (e: IllegalArgumentException) {
-            d("bomoh", "not from history")
+            d("bomoh", "not from history $from")
         }
 
         findViewById<TextView>(R.id.stat_temperature).text = "$temperature °C"
@@ -69,7 +70,7 @@ class HealthStatusActivity: AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        if (from.isNullOrEmpty()) {
+        if (from == "null") {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

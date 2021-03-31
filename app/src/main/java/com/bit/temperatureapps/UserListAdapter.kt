@@ -22,6 +22,7 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
         val row_temperature: TextView = itemView.findViewById(R.id.row_temperature)
         val row_bpm: TextView = itemView.findViewById(R.id.row_bpm)
         val row_date: TextView = itemView.findViewById(R.id.row_date)
+        val header : ConstraintLayout = itemView.findViewById(R.id.constraintLayoutHead)
         val lay: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
 
     }
@@ -42,15 +43,18 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
         if (position == 0) {
             holder.row_date.isVisible = true
             holder.row_date.text = date
+            holder.header.isVisible = true
         } else {
             val p_info = userList[position-1].time.split(" ")
             val p_date = p_info[0]
-            // If previous date not the same with current
+            // If previous date not the same with currentgit
             if (p_date != date) {
                 holder.row_date.isVisible = true
                 holder.row_date.text = date
+                holder.header.isVisible = true
             }else {
                 holder.row_date.isVisible = false
+                holder.header.isVisible = false
             }
         }
 
