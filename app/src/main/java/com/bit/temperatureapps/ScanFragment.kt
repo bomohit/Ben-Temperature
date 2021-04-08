@@ -145,10 +145,10 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
         d("bomoh", "yes ${String(data!!)}nn")
         if (!String(data).contains("error") && String(data).contains(".") && !stat) {
             temperatureTaken = String(data)
-            temperatureTaken = (temperatureTaken!!.toDouble() + 3.49).toString()
+            temperatureTaken = (temperatureTaken!!.toDouble() + 2.19).toString()
             mp.start()
             requireActivity().runOnUiThread {
-                requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${String(data!!).trimIndent()} °C"
+                requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${temperatureTaken} °C"
 
             }
             requireActivity().runOnUiThread {
