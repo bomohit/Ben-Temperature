@@ -58,7 +58,7 @@ class HealthStatusActivity: AppCompatActivity() {
         con1.text = condition1
         con2.text = condition2
 
-        if (condition1 == "Body temperature is normal" && condition2 == "Heart rate is normal") {
+        if (condition1 == "1) Body temperature is normal" && condition2 == "2) Heart rate is normal") {
             condition.text = "Normal"
             condition.setTextColor(Color.GREEN)
         } else {

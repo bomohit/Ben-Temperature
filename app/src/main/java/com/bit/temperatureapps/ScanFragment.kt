@@ -24,6 +24,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.hoho.android.usbserial.driver.UsbSerialPort
 import com.hoho.android.usbserial.driver.UsbSerialProber
 import com.hoho.android.usbserial.util.SerialInputOutputManager
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.util.concurrent.Executors
 
 
@@ -145,7 +147,9 @@ class ScanFragment : Fragment(), SerialInputOutputManager.Listener {
         d("bomoh", "yes ${String(data!!)}nn")
         if (!String(data).contains("error") && String(data).contains(".") && !stat) {
             temperatureTaken = String(data)
-            temperatureTaken = (temperatureTaken!!.toDouble() + 2.19).toString()
+            val df = DecimalFormat("#.#")
+            df.roundingMode = RoundingMode.CEILING
+            temperatureTaken = df.format(temperatureTaken!!.toDouble() + 2)
             mp.start()
             requireActivity().runOnUiThread {
                 requireActivity().findViewById<TextView>(R.id.displayTemperature).text = "${temperatureTaken} °C"
